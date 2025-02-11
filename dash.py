@@ -14,12 +14,14 @@ def load_data():
     ingenieros_df = pd.read_csv("ingenieros.csv")
     proyectos_df = pd.read_csv("proyectos.csv")
     cursos_df = pd.read_csv("cursos.csv")
-    return kpis_cloud, logros, learning_path, jira_tracking, ingenieros_df, proyectos_df, cursos_df
+    niveles_df = pd.read_csv("niveles.csv")
+    insignias_df = pd.read_csv("insignias.csv")
+    return kpis_cloud, logros, learning_path, jira_tracking, ingenieros_df, proyectos_df, cursos_df, niveles_df, insignias_df
 
-kpis_cloud, logros, learning_path, jira_tracking, ingenieros_df, proyectos_df, cursos_df = load_data()
+kpis_cloud, logros, learning_path, jira_tracking, ingenieros_df, proyectos_df, cursos_df, niveles_df, insignias_df = load_data()
 
 # Menú de Navegación
-menu = st.sidebar.radio("Menú", ["🏆 KPIs Cloud DevOps", "🎯 Logros", "📚 Learning Path", "📊 Seguimiento de Proyectos", "📡 Dashboard General", "📈 Desempeño de Ingeniería"])
+menu = st.sidebar.radio("Menú", ["🏆 KPIs Cloud DevOps", "🎯 Logros", "📚 Learning Path", "📊 Seguimiento de Proyectos", "📡 Dashboard General", "📈 Desempeño de Ingeniería", "🎖 Niveles y Logros"])
 
 if menu == "🏆 KPIs Cloud DevOps":
     st.title("KPIs de Cloud DevOps")
@@ -95,3 +97,11 @@ elif menu == "📈 Desempeño de Ingeniería":
     # Tabla con detalles de proyectos
     st.subheader("📋 Detalles de Proyectos")
     st.dataframe(proyectos_df)
+
+elif menu == "🎖 Niveles y Logros":
+    st.title("🎖 Niveles y Logros de Ingenieros")
+    st.markdown("## 🚀 Progreso de Ingenieros en XP y Niveles")
+    st.dataframe(niveles_df)
+    
+    st.markdown("## 🏆 Insignias Ganadas")
+    st.dataframe(insignias_df)
